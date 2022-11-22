@@ -1,8 +1,6 @@
-from kivy.app import App
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.tab import MDTabsBase
-from kivymd.app import MDApp
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivymd.uix.list import TwoLineAvatarIconListItem, IconRightWidget, IconLeftWidget
@@ -189,14 +187,3 @@ class Container(MDBoxLayout):
             lst = controller.search_contact(string)
         return lst  
             
-class MyApp(MDApp):  
-
-    def build(self):  
-        self.load_kv("view_container.kv") 
-        self.theme_cls.theme_style = "Light"
-        self.theme_cls.primary_palette = "BlueGray"
-        return Container() 
-        
-
-if __name__ == "__main__":  
-    MyApp().run()
