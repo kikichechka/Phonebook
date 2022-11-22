@@ -1,0 +1,133 @@
+<Container>:
+    orientation: 'vertical'
+    contain: contain
+    action_button: action_button
+    app_bar: app_bar
+
+    MDFloatLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            size_hint: 1, 0.20
+            pos_hint: {'x': 0, 'y': 0.80}
+            title: "Телефонный справочник"
+            font_name_helper_text: "arial"
+            right_action_items: [["menu", lambda x: x]]
+
+        MDBoxLayout:
+            id: contain
+            orientation: 'vertical'
+            size_hint: 1, 0.78
+            pos_hint: {'x': 0, 'y': 0.11}
+            canvas.before:
+                Color:
+                    rgba: 255, 255, 255, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [20,]
+                  
+        BoxLayout:
+            id: app_bar
+            MDBottomAppBar:
+                MDTopAppBar:
+                    id: action_button
+                    icon :"plus"
+                    type: "bottom"
+                    text: "plus"
+                    on_action_button: root.change_icon_action_button()
+
+<ShowAllContacts>:
+    list_contacts: list_contacts
+    text_field: text_field
+    button_magnify: button_magnify
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        FloatLayout:
+            size_hint: 0.9, 0.08
+            pos_hint: {"center_x": .5, "center_y": .06}
+            MDTextField:
+                id: text_field
+                hint_text: "Поиск"
+                pos_hint: {"center_x": .5, "center_y": .06}
+            MDIconButton:
+                id: button_magnify
+                icon: "magnify"
+                pos_hint: {"x": .85, "y": -.4}
+                theme_text_color: "Hint"
+        
+        MDScrollView:
+            size_hint: 0.9, 1
+            pos_hint: {"center_x": .5}
+            text_size: self.size
+            MDList:
+                id: list_contacts
+                text_size: self.size
+
+<ShowContact>:
+    name: name
+    telephone: telephone
+    comment: comment
+    padding: 20
+        
+    FitImage:
+        size_hint: None, None
+        source: 'images/img1.jpg'
+        size: 130, 130
+        pos_hint: {"center_x": .5}
+    
+    MDLabel:
+        id: name
+        text: "Имя контакта:  "
+        size_hint: 1, 0.1
+        pos_hint: {"center_x": .5}
+        halign: "center"
+        font_size: 30 
+    MDLabel:
+        id: telephone
+        text: "Номер телефона:  "
+        size_hint: 1, 0.1
+    MDLabel:
+        id: comment
+        text: "Комментарий:  "
+        size_hint: 1, 0.1
+    BoxLayout:
+        size_hint: 1, 0.2
+
+
+<ChangeContact>:
+    name: name
+    telephone: telephone
+    comment: comment
+    padding: 20
+    size_hint: 1, 0.5
+    spacing: 40
+
+    FitImage:
+        size_hint: None, None
+        source: 'images/img1.jpg'
+        size: 130, 130
+        pos_hint: {"center_x": .5}
+    BoxLayout:
+        orientation: "vertical"
+        MDLabel:
+            text: "Имя контакта:"
+        MDTextField:
+            id: name
+            helper_text: "Поле не должно быть пустым: введите имя"
+            helper_text_mode: "persistent"
+    BoxLayout:
+        orientation: "vertical"
+        MDLabel:
+            text: "Номер телефона:"
+        MDTextField:
+            id: telephone
+            helper_text: "Поле не должно быть пустым: введите цифры"
+            helper_text_mode: "persistent"
+    BoxLayout:
+        orientation: "vertical"
+        MDLabel:
+            text: "Комментарий:"
+        MDTextField:
+            id: comment
+
